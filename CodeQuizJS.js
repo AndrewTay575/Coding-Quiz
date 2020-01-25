@@ -2,6 +2,9 @@
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
+        //var selectedOption = document.querySelector('input[type=radio]:checked');
+        //console.log(timer);
+
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -9,10 +12,39 @@ function startTimer(duration, display) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.textContent = minutes + ":" + seconds;
+        console.log(seconds);
+        //console.log(timer);
+        
+        //  if(selectedOption.checked = false) {
+        //     timer = duration - 30;
+        //     minutes = parseInt(timer / 60, 10);
+        //     seconds = parseInt(timer % 60, 10);
+    
+        //     minutes = minutes < 10 ? "0" + minutes : minutes;
+        //     seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+        //     display.textContent = minutes + ":" + seconds;
+             
+            
+        //  }
+    
+    
+            
+        
 
-        if (--timer < 0) {
-            timer = duration;
+        if(--timer < 0) {
+            minutes = 00;
+            seconds = 00;
+            display.textContent = minutes + ":" + seconds;
+            container.style.display = "none";
+            resultCont.style.display = "";
+            resultCont.textContent = "Your Score: " + score + "/50";
+        
         }
+
+        
+
+        
     }, 1000);
 }
 
@@ -20,6 +52,7 @@ window.onload = function () {
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
+    
 };
 
 // Question functionality
@@ -50,20 +83,28 @@ function loadNextQuestion() {
         return;
     }
     var answer = selectedOption.value;
-    if(questions[currentQuestion.answer == answer]){
+    if(questions[currentQuestion].answer == answer){
         score += 10;
     }
+    // Does not add points to score if answer is wrong
     selectedOption.checked = false;
+    
+    
     currentQuestion++;
+    
     if(currentQuestion == totQuestions - 1){
         nextButton.textContent = "Finish";
+        //nextButton.attr(href = "CodeQuizHighScores.html");
     }
-    if(currentQuestion == totQuestions) {
-        container.style.display = "none";
-        resultCont.style.display = "";
-        resultCont.textContent = "Your Score: " + score;
+     if(currentQuestion == totQuestions) {
+         container.style.display = "none";
+         resultCont.style.display = "";
+         resultCont.textContent = "Your Score: " + score + "/50";
+        
+         console.log(score);
+        
         return;
-    }
+     }
     loadQuestion(currentQuestion);
 }
 loadQuestion(currentQuestion);
