@@ -44,7 +44,7 @@ function loadQuestion(questionIndex) {
     
 };
 function loadNextQuestion() {
-    var selectedOption = document.querySelector('button[type=button]:checked');
+    var selectedOption = document.querySelector('input[type=radio]:checked');
     if(!selectedOption){
         alert("Please select your answer!");
         return;
