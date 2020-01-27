@@ -38,6 +38,7 @@ function startTimer(duration, display) {
             display.textContent = minutes + ":" + seconds;
             container.style.display = "none";
             resultCont.style.display = "";
+            resultCont.textContent = "Time is up!"
             resultCont.textContent = "Your Score: " + score + "/50";
         
         }
@@ -67,6 +68,7 @@ var opt3 = document.getElementById('opt3');
 var opt4 = document.getElementById('opt4');
 var nextButton = document.getElementById('nextButton');
 var resultCont = document.getElementById('result');
+
 function loadQuestion(questionIndex) {
     var q = questions[questionIndex];
     questionEl.textContent = (questionIndex + 1) + '. ' + q.question;
@@ -99,8 +101,32 @@ function loadNextQuestion() {
      if(currentQuestion == totQuestions) {
          container.style.display = "none";
          resultCont.style.display = "";
-         resultCont.textContent = "Your Score: " + score + "/50";
+        //  var highscoreStyle = $("<div>");
+        //  highscoreStyle.addClass("jumbotron");
+        //  $("#display").append(highscoreStyle);
+        //  var jumboTxt = $("<h1>");
+        //  jumboTxt.addClass("display-4");
+        //  jumboTxt.text("High Scores");
+        //  $("#jumbotron").append(jumboTxt);
+        //  var instructTxt = $("<p>");
+        //  instructTxt.addClass("lead");
+        //  instructTxt.text("Click on the button to add your score!");
+        //  $("#jumbotron").append(instructTxt);
+        //  var newP = $("<p>");
+        //  newP.addClass("lead");
+        //  $("#instructTxt").append(newP);
+        //  var scoreBtn = $("<a>");
+        //  scoreBtn.addClass("btn btn-primary btn-lg");
+        //  scoreBtn.text("New Score");
+        //  $("#lead").append(scoreBtn)
+
+
+
+         
+
         
+         resultCont.textContent = "Your Score: " + score + "/50";
+                 
          console.log(score);
         
         return;
@@ -108,3 +134,15 @@ function loadNextQuestion() {
     loadQuestion(currentQuestion);
 }
 loadQuestion(currentQuestion);
+
+function scoreboard() {
+    var newInitial = prompt("Please enter your full name.");
+    var newScore = resultCont;
+    var newHighScore = newInitial + ":" + newScore;
+    var newP = $("<p>");
+    newP.text(newHighScore);
+    $("#result").append("<br><hr>" + newP);
+
+
+    
+}
