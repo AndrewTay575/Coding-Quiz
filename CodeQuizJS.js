@@ -12,9 +12,9 @@ function startTimer(duration, display) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.textContent = minutes + ":" + seconds;
-        console.log(seconds);
+        // console.log(seconds);
         //console.log(timer);
-        
+        // This doesnt work because selectedOption is not defined yet
         //  if(selectedOption.checked = false) {
         //     timer = duration - 30;
         //     minutes = parseInt(timer / 60, 10);
@@ -57,6 +57,9 @@ window.onload = function () {
 };
 
 // Question functionality
+var initials;
+var records = [];
+
 var currentQuestion = 0;
 var score = 0;
 var totQuestions = questions.length;
@@ -101,6 +104,11 @@ function loadNextQuestion() {
      if(currentQuestion == totQuestions) {
          container.style.display = "none";
          resultCont.style.display = "";
+         display = document.querySelector('#time');
+         minutes = 00;
+         seconds = 00;
+         display.textContent = minutes + ":" + seconds;
+
         //  var highscoreStyle = $("<div>");
         //  highscoreStyle.addClass("jumbotron");
         //  $("#display").append(highscoreStyle);
@@ -125,23 +133,49 @@ function loadNextQuestion() {
          
 
         
-         resultCont.textContent = "Your Score: " + score + "/50";
+         resultCont.textContent = "Your Score: " + score + "/50" ;
                  
-         console.log(score);
+         
         
         return;
      }
     loadQuestion(currentQuestion);
 }
+var scoreList = localStorage.getItem("records");
 loadQuestion(currentQuestion);
 
 function scoreboard() {
-    var newInitial = prompt("Please enter your full name.");
-    var newScore = resultCont;
-    var newHighScore = newInitial + ":" + newScore;
-    var newP = $("<p>");
-    newP.text(newHighScore);
-    $("#result").append("<br><hr>" + newP);
+    initials = prompt("Please enter your name.");
+    var scoreList = localStorage.getItem("records");
+    records = JSON.parse(scoreList);
+    if(initials){
+        
+    
+    var user = {
+        name: initials,
+        finalScore: score
+    }
+    // user.name = initials;
+    // user.finalScore = score;
+    records.push(user);
+    localStorage.setItem("records", JSON.stringify(records));
+    console.log(initials);
+    console.log(score);
+    console.log(records);
+    $("#result").empty();
+    for(var i = 0; i < records.length; i++) {
+        var newP = $("<p>");
+    newP.text(records[i].name + " : " + records[i].finalScore);
+    $("#result").prepend(newP);
+    }
+    
+}
+
+else  {
+    alert("Please enter initials!");
+
+    return;
+}
 
 
     
