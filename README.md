@@ -5,4 +5,4 @@ To select an answer, check the bubble within the blue buttons, then click submit
 Each correct answer will add 10 points to your score, to be displayed at the end
 When you reach question #5, clicking finish will finish the quiz and display your final score
 Click the blue box that displays your score to enter your initials, so that they are stored with your score
-Click view high scores, then return to start to return to the nain screen to take the quiz again
+Click view high scores, then return to start to return to the main screen to take the quiz again
