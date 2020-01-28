@@ -17,34 +17,45 @@
     <a class = "btn btn-secondary btn-lg" href = "CodeQuizJumbotron.html" role = "button">Return To Start</a>
     <div class = "jumbotron">
         <h1 class = "display-4">High Scores</h1>
-        <p class = "lead">Click on the button to add your score!</p> 
+         
          <p class= "lead"></p>
-            <a class = "btn btn-primary btn-lg" id = "score-Button"  role = "button">New Score</a>                   
+                              
         <hr class = "my-4">
         <p class = "text-center" id = "score-display"></p>
         
     <script type="text/javascript">
         $(document).ready(function() {
 
-            var newScore = $("#result");
-            var newHighScore = {
-                Initials: initialsInput.value.trim(),
-                Score: newScore.value.trim()
-            }
-            $("#score-Button").on("click", function() {
-                 initialsInput = prompt("Please enter your initials");
-                 //scoreInput = prompt("Please enter your Score");
-                
-                //console.log(newHighScore);
-                
-                //console.log(newScore);
-                 $("#score-display").prepend("<br><hr>" + newHighScore.Initials + ":" + newHighScore.Score);
-                 localStorage.setItem("newHighScore", JSON.stringify(newHighScore));
-                 var oldScore = JSON.parse(localStorage.getItem("newHighScore"));
-                 console.log(oldScore);
-            })
+            var scoreList = localStorage.getItem("records");
+            records = JSON.parse(scoreList);
 
-           
+            
+            for(var i = 0; i < records.length; i++) {
+                var newP = $("<p>");
+                newP.text(records[i].name + " : " + records[i].finalScore);
+                $("#score-display").prepend(newP);
+            }
+            
+
+            // var newScore = $("#result");
+            // var newHighScore = {
+            //     Initials: initialsInput.value.trim(),
+            //     Score: newScore.value.trim()
+            // }
+            // $("#score-Button").on("click", function() {
+            //      initialsInput = prompt("Please enter your initials");
+            //      //scoreInput = prompt("Please enter your Score");
+                
+            //     //console.log(newHighScore);
+                
+            //     //console.log(newScore);
+            //      $("#score-display").prepend("<br><hr>" + newHighScore.Initials + ":" + newHighScore.Score);
+            //      localStorage.setItem("newHighScore", JSON.stringify(newHighScore));
+            //      var oldScore = JSON.parse(localStorage.getItem("newHighScore"));
+            //      console.log(oldScore);
+            // })
+
+              
         })
     </script>        
 <script src = "CodeQuizQuestionArr.js"></script>

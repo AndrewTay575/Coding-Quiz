@@ -145,7 +145,7 @@ var scoreList = localStorage.getItem("records");
 loadQuestion(currentQuestion);
 
 function scoreboard() {
-    initials = prompt("Please enter your name.");
+    initials = prompt("Please enter your initials.");
     var scoreList = localStorage.getItem("records");
     records = JSON.parse(scoreList);
     if(initials){
