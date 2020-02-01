@@ -20,7 +20,7 @@ var questions = [{
     "option4":  "alertText('Hello World');" ,
     "answer": "3"
 }, {
-    "question": "Which languages are the building block of the web?",
+    "question": "Which languages are the building blocks of the web?",
     "option1":  "HTML only",
     "option2":  "HTML, CSS, Javascript",
     "option3":  "CSS, Javascript",
